@@ -6,14 +6,14 @@
 
 PNGE defines a governance execution pattern where protocols (human-readable documents) define all authority, and code may only implement protocol-defined boundaries. DSI provides the quantitative scoring layer within a PNGE-conformant system.
 
-- Repository: https://github.com/Jtjr86/pnge-standard
+- Repository: https://github.com/dgp-standard/pnge
 - Relationship to DSI: DSI scores measure divergence from PNGE-defined protocols
 
 ### SSI — Sovereign Synthetic Intelligence Protocol
 
 SSI defines cryptographic audit provenance: hash-chained decision records, append-only logs, fail-closed semantics, and human authority preservation. DSI evaluation outputs integrate as the scored payload within SSI audit records.
 
-- Repository: https://github.com/Jtjr86/ssi-protocol-oss
+- Repository: https://github.com/dgp-standard/ssi
 - Relationship to DSI: SSI provides the immutable audit layer for DSI decisions
 
 ## Architectural Precedents

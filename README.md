@@ -106,8 +106,8 @@ Verdict:   APPROVE
 
 ## Related Standards
 
-- **[PNGE](https://github.com/Jtjr86/pnge-standard)** — Protocol-Native Governance Execution
-- **[SSI Protocol](https://github.com/Jtjr86/ssi-protocol-oss)** — Sovereign Synthetic Intelligence Protocol
+- **[PNGE](https://github.com/dgp-standard/pnge)** — Protocol-Native Governance Execution
+- **[SSI Protocol](https://github.com/dgp-standard/ssi)** — Sovereign Synthetic Intelligence Protocol
 
 ## License
 

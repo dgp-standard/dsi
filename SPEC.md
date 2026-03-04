@@ -551,8 +551,8 @@ See [JSON_SCHEMA/](JSON_SCHEMA/) for machine-readable schema definitions of DSI 
 
 ## Appendix C: References
 
-- [PNGE Standard](https://github.com/Jtjr86/pnge-standard) — Protocol-Native Governance Execution
-- [SSI Protocol](https://github.com/Jtjr86/ssi-protocol-oss) — Sovereign Synthetic Intelligence Protocol
+- [PNGE Standard](https://github.com/dgp-standard/pnge) — Protocol-Native Governance Execution
+- [SSI Protocol](https://github.com/dgp-standard/ssi) — Sovereign Synthetic Intelligence Protocol
 - [RFC 2119](https://www.ietf.org/rfc/rfc2119.txt) — Key Words for Use in RFCs
 - [Semantic Versioning 2.0.0](https://semver.org/) — Version numbering standard
 - [CVSS v4.0](https://www.first.org/cvss/v4.0/specification-document) — Architectural precedent for open scoring standards
