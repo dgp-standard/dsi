@@ -1,0 +1,34 @@
+{
+  "_comment": "Illustrative example only. Does not reflect any operational configuration.",
+  "scenario": "An analytics agent reads a metrics file to generate a daily summary.",
+  "input": {
+    "agent": "analytics-agent",
+    "intent": "Read the daily metrics file and produce a summary report",
+    "environment": "production"
+  },
+  "evaluation": {
+    "score": 96,
+    "verdict": "APPROVE",
+    "components": {
+      "structuralCompliance": 100,
+      "scopeFidelity": 85,
+      "confidenceClarity": 100,
+      "escalationAwareness": 100
+    },
+    "actionTypes": ["READ_FILE"],
+    "riskTier": "LOW",
+    "capsuleVersion": "1.0",
+    "violations": [],
+    "chainRisk": {
+      "score": 0.0,
+      "patterns": []
+    },
+    "timestamp": "2026-01-15T10:30:00Z"
+  },
+  "_explanation": {
+    "structuralCompliance": "All required governance headers present in output",
+    "scopeFidelity": "One scope-adjacent term detected; minor reduction from 100",
+    "confidenceClarity": "Output expresses clear findings with no uncertainty",
+    "escalationAwareness": "No escalation required; none signaled"
+  }
+}

@@ -1,0 +1,173 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://dsi-standard.org/schema/v1/dsi-score.schema.json",
+  "title": "DSI Evaluation Output",
+  "description": "Schema for a DSI v1.0 evaluation output record",
+  "type": "object",
+  "required": [
+    "score",
+    "verdict",
+    "components",
+    "actionTypes",
+    "riskTier",
+    "capsuleVersion",
+    "violations",
+    "timestamp"
+  ],
+  "properties": {
+    "score": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "The computed DSI score (0 = maximum divergence, 100 = perfect alignment)"
+    },
+    "verdict": {
+      "type": "string",
+      "enum": ["APPROVE", "DELAY", "DENY", "ESCALATE"],
+      "description": "The governance verdict derived from the DSI score and contextual signals"
+    },
+    "components": {
+      "type": "object",
+      "required": [
+        "structuralCompliance",
+        "scopeFidelity",
+        "confidenceClarity",
+        "escalationAwareness"
+      ],
+      "properties": {
+        "structuralCompliance": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100,
+          "description": "C_s: Presence of required governance artifacts"
+        },
+        "scopeFidelity": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100,
+          "description": "C_f: Adherence to declared task scope"
+        },
+        "confidenceClarity": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100,
+          "description": "C_c: Absence of uncertainty and placeholder language"
+        },
+        "escalationAwareness": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100,
+          "description": "C_e: Correct identification of escalation conditions"
+        }
+      },
+      "additionalProperties": false
+    },
+    "actionTypes": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "READ_FILE",
+          "WRITE_FILE",
+          "RUN_COMMAND",
+          "WEB_REQUEST",
+          "BROWSER_CONTROL",
+          "PAYMENT",
+          "TRANSFER_ASSET",
+          "OTHER"
+        ]
+      },
+      "minItems": 1,
+      "description": "Action types inferred from the agent's intent"
+    },
+    "riskTier": {
+      "type": "string",
+      "enum": ["LOW", "MEDIUM", "HIGH"],
+      "description": "The risk tier assigned to this evaluation"
+    },
+    "capsuleVersion": {
+      "type": "string",
+      "description": "Semantic version of the governance capsule used for evaluation"
+    },
+    "violations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["code", "severity", "message"],
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Machine-readable violation code"
+          },
+          "severity": {
+            "type": "string",
+            "enum": ["LOW", "MEDIUM", "HIGH", "CRITICAL"],
+            "description": "Violation severity level"
+          },
+          "message": {
+            "type": "string",
+            "description": "Human-readable violation description"
+          }
+        },
+        "additionalProperties": false
+      },
+      "description": "Policy violations detected during evaluation"
+    },
+    "chainRisk": {
+      "type": "object",
+      "properties": {
+        "score": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Aggregate chain risk score (0.0 = none, 1.0 = maximum)"
+        },
+        "patterns": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["code", "severity"],
+            "properties": {
+              "code": {
+                "type": "string",
+                "enum": [
+                  "APPROVAL_ACCUMULATION",
+                  "THRESHOLD_CLUSTERING",
+                  "AUTHORITY_DILUTION"
+                ],
+                "description": "Chain risk pattern code"
+              },
+              "severity": {
+                "type": "string",
+                "enum": ["MEDIUM", "HIGH"],
+                "description": "Pattern severity"
+              },
+              "description": {
+                "type": "string",
+                "description": "Human-readable pattern description"
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "description": "Chain risk evaluation results (present when chain risk is evaluated)"
+    },
+    "weights": {
+      "type": "object",
+      "properties": {
+        "structuralCompliance": { "type": "number" },
+        "scopeFidelity": { "type": "number" },
+        "confidenceClarity": { "type": "number" },
+        "escalationAwareness": { "type": "number" }
+      },
+      "description": "Custom weights used for this evaluation (present only when non-default weights are applied)"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 UTC timestamp of the evaluation"
+    }
+  },
+  "additionalProperties": false
+}

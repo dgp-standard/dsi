@@ -1,0 +1,35 @@
+{
+  "_comment": "Illustrative example only. Does not reflect any operational configuration.",
+  "scenario": "A service agent proposes transferring data to an external endpoint. The action involves asset movement and triggers mandatory escalation.",
+  "input": {
+    "agent": "sync-service",
+    "intent": "Export quarterly records and upload to the partner reporting endpoint",
+    "environment": "production"
+  },
+  "evaluation": {
+    "score": 91,
+    "verdict": "ESCALATE",
+    "components": {
+      "structuralCompliance": 100,
+      "scopeFidelity": 82,
+      "confidenceClarity": 95,
+      "escalationAwareness": 75
+    },
+    "actionTypes": ["READ_FILE", "TRANSFER_ASSET"],
+    "riskTier": "HIGH",
+    "capsuleVersion": "1.0",
+    "violations": [],
+    "chainRisk": {
+      "score": 0.0,
+      "patterns": []
+    },
+    "timestamp": "2026-01-15T16:45:00Z"
+  },
+  "_explanation": {
+    "note": "Score of 91 would normally yield APPROVE, but TRANSFER_ASSET is classified HIGH risk and the capsule requires escalation for high-risk actions. ESCALATE takes precedence over APPROVE per verdict precedence rules.",
+    "structuralCompliance": "All governance artifacts present",
+    "scopeFidelity": "Output references external systems beyond declared scope",
+    "confidenceClarity": "Output is mostly decisive with minor hedging",
+    "escalationAwareness": "Escalation condition exists but output does not explicitly signal it"
+  }
+}

@@ -1,0 +1,108 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://dsi-standard.org/schema/v1/capsule.schema.json",
+  "title": "DSI Governance Capsule",
+  "description": "Schema for a DSI v1.0 governance capsule — a versioned, portable policy configuration",
+  "type": "object",
+  "required": ["version", "governance"],
+  "properties": {
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+(\\.\\d+)?(-[a-zA-Z0-9.-]+)?$",
+      "description": "Semantic version of this capsule"
+    },
+    "governance": {
+      "type": "object",
+      "required": [
+        "structuralCompliance",
+        "scopeFidelity",
+        "scoring",
+        "escalation"
+      ],
+      "properties": {
+        "structuralCompliance": {
+          "type": "object",
+          "required": ["requiredHeaders"],
+          "properties": {
+            "requiredHeaders": {
+              "type": "array",
+              "items": { "type": "string" },
+              "description": "Governance artifacts that must be present in agent output"
+            }
+          },
+          "additionalProperties": false
+        },
+        "scopeFidelity": {
+          "type": "object",
+          "required": ["driftKeywords"],
+          "properties": {
+            "driftKeywords": {
+              "type": "array",
+              "items": { "type": "string" },
+              "description": "Terms that indicate scope divergence when detected in agent output"
+            }
+          },
+          "additionalProperties": false
+        },
+        "scoring": {
+          "type": "object",
+          "required": ["riskThreshold"],
+          "properties": {
+            "riskThreshold": {
+              "type": "string",
+              "enum": ["LOW", "MEDIUM", "HIGH"],
+              "description": "Minimum risk tier that triggers elevated evaluation"
+            }
+          },
+          "additionalProperties": false
+        },
+        "escalation": {
+          "type": "object",
+          "required": ["triggers", "requiredForHighRisk"],
+          "properties": {
+            "triggers": {
+              "type": "array",
+              "items": { "type": "string" },
+              "description": "Terms or patterns that signal escalation need in agent output"
+            },
+            "requiredForHighRisk": {
+              "type": "boolean",
+              "description": "Whether HIGH risk actions must always be escalated"
+            }
+          },
+          "additionalProperties": false
+        },
+        "chainRisk": {
+          "type": "object",
+          "properties": {
+            "enabled": {
+              "type": "boolean",
+              "description": "Whether chain risk evaluation is active under this capsule"
+            },
+            "escalationScore": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1,
+              "description": "Chain risk score threshold that triggers escalation"
+            },
+            "escalationPatterns": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "APPROVAL_ACCUMULATION",
+                  "THRESHOLD_CLUSTERING",
+                  "AUTHORITY_DILUTION"
+                ]
+              },
+              "description": "Which chain risk patterns qualify for policy-driven escalation"
+            }
+          },
+          "description": "Chain risk evaluation configuration (optional)"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}
