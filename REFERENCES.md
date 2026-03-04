@@ -15,6 +15,7 @@ SSI defines cryptographic audit provenance: hash-chained decision records, appen
 
 - Repository: https://github.com/dgp-standard/ssi
 - Relationship to DSI: SSI provides the immutable audit layer for DSI decisions
+- Reference SDK: https://github.com/dgp-standard/ssi-chain
 
 ## Architectural Precedents
 

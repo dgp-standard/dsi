@@ -213,7 +213,7 @@ This separation model follows established patterns in the industry:
     SQL (query language)   →     PostgreSQL, Oracle, MySQL (engines)
     OpenTelemetry (spec)   →     Datadog, Splunk, Grafana (platforms)
 
-    DSI (scoring)          →     Guardian, [future implementations]
+    DSI (scoring)          →     [conforming implementations]
 ```
 
 The standard creates the **category**. Implementations compete **within** the category. The standard author has first-mover advantage and reference-implementation authority.
